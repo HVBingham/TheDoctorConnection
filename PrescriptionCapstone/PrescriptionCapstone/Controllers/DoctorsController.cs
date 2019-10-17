@@ -171,7 +171,6 @@ namespace PrescriptionCapstone.Controllers
             Patient editPatient = context.Patients.Find(id);
             editPatient.FirstName = patient.FirstName;
             editPatient.LastName = patient.LastName;
-            editPatient.EmailAddress = patient.EmailAddress;
             editPatient.Diagnosis = patient.Diagnosis;
             editPatient.Medication = patient.Medication;
             patient.Medications.Add(patient.Medication);
