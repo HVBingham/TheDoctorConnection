@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PrescriptionCapstone.Models;
 
 namespace PrescriptionCapstone.Controllers
@@ -22,8 +23,8 @@ namespace PrescriptionCapstone.Controllers
         // GET: Patients
         public ActionResult Index()
         {
-            var patients = context.Patients.Include(p => p.Id);
-            return View(patients.ToList());
+            var patients = context.Patients.ToList();
+            return View(patients);
         }
 
         // GET: Patients/Details/5
@@ -57,6 +58,8 @@ namespace PrescriptionCapstone.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = User.Identity.GetUserId();
+                patient.UserId = user;
                 context.Patients.Add(patient);
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,7 +95,6 @@ namespace PrescriptionCapstone.Controllers
             Patient patient1 = context.Patients.Find(id);
             patient1.FirstName = patient.FirstName;
             patient1.LastName = patient.LastName;
-            patient1.EmailAddress = patient.EmailAddress;
             patient.Doctor = patient.Doctor;
             return View(patient);
         }

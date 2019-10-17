@@ -24,9 +24,6 @@ namespace PrescriptionCapstone.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Email Address")]
-        public string EmailAddress { get; set; }
-
         [Display(Name = "Daily Appointment")]
         public DateTime? Appointment { get; set; }
 

@@ -76,7 +76,6 @@ namespace PrescriptionCapstone.Controllers
                 Doctor editDoctor = context.Doctors.Find(id);
                 editDoctor.FirstName = doctor.FirstName;
                 editDoctor.LastName = doctor.LastName;
-                editDoctor.EmailAddress = doctor.EmailAddress;
 
                 return RedirectToAction("Index");
             }
@@ -134,5 +133,63 @@ namespace PrescriptionCapstone.Controllers
             }
             return View(ListOfMedication);
         }
+        public ActionResult CreatePatient()
+        {
+            Patient patient = new Patient();
+            return View(patient);
+        }
+
+        // POST: patients/Create
+        [HttpPost]
+        public ActionResult CreatePatient(Patient patient)
+        {
+            try
+            {
+                var user = User.Identity.GetUserId();
+                patient.UserId = user;
+                context.Patients.Add(patient);
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult EditPatient(int id)
+        {
+            Patient patient = context.Patients.Where(p => p.Id == id).SingleOrDefault();
+            return View(patient);
+        }
+
+        [HttpPost]
+        public ActionResult EditPatient(int id, Patient patient)
+        {
+            Patient editPatient = context.Patients.Find(id);
+            editPatient.FirstName = patient.FirstName;
+            editPatient.LastName = patient.LastName;
+            editPatient.Diagnosis = patient.Diagnosis;
+            editPatient.Medication = patient.Medication;
+            patient.Medications.Add(patient.Medication);
+           // if (editPatient.Medication == patient.Medication)
+           // {
+           //     Console.WriteLine("That patient is already taking that medication");
+           // }
+           //else if(editPatient.Medication != patient.Medication)
+           // {
+           //     editPatient.Medication = patient.Medication;
+           //     context.Medications.Add(patient.Medication);
+                
+           // }
+            
+            context.SaveChanges();
+            return RedirectToAction("Index");
+
+
+        }
+
     }
 }
