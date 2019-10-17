@@ -131,11 +131,24 @@ namespace PrescriptionCapstone.Controllers
             }
             base.Dispose(disposing);
         }
-        /*public ActionResult SelectAppointment()
+        public ActionResult SelectAppointment(Doctor value, Doctor appointment)
         {
-            Doctor appointment = new 
-        }   
-*/
+            Doctor appointmentsFromDb = context.Doctors.Where(d => d.Appointment == appointment.Appointment).FirstOrDefault();
+            
+            if (appointmentsFromDb != null)
+            {
+                return View("Appointment not available" + RedirectToAction("SelectAppointment"));
+            }
+            else
+            {
+                context.Doctors.Add(appointment);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+
+        }
+
         /*public ActionResult SelectMedication()
         {
             //view list from MD 
@@ -143,27 +156,22 @@ namespace PrescriptionCapstone.Controllers
             //store selected option in a variable 
             //notify MD??
         }*/
+        public ActionResult confrimMedTaken(Medication medication)
+        {
+            Medication medicatioFromDb = context.Medications.Where(m => m.PatientId == medication.PatientId).FirstOrDefault();
+            medication.MedicationConfirmed = true;
+            context.SaveChanges();
+            return View(medication);
+            //what if patient does not confirm?
+        }
+        public ActionResult patientLog(int Id, string text)
+        {
+            Patient patientFromDb = context.Patients.Find(Id);
+            DateTime dt = DateTime.Now;
+            patientFromDb.Log.Add(dt, text);
 
-
-        //public ActionResult confrimMedTaken(int Id, Patient patient)
-        //{
- 
-        //    patient = context.Patients.Find(Id);
-
-        //    if (patient.Id)
-        //    {
-
-        //    }
-        //    return View(medications);
-        //}
-        //public ActionResult patientLog(int Id, string text)
-        //{
-        //    Patient patientFromDb = context.Patients.Find(Id);
-        //    DateTime dt = DateTime.Now;
-        //    patientFromDb.Log.Add(dt, text);
-
-        //    return View(patientFromDb.Log);
-        //}
+           return View(patientFromDb.Log);
+        }
 
     }
 }
