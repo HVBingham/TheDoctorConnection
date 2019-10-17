@@ -23,8 +23,8 @@ namespace PrescriptionCapstone.Controllers
         // GET: Patients
         public ActionResult Index()
         {
-            var patients = context.Patients.Include(p => p.Id);
-            return View(patients.ToList());
+            var patients = context.Patients.ToList();
+            return View(patients);
         }
 
         // GET: Patients/Details/5

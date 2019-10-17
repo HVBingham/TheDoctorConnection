@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201910171855083_AddedToModels.Designer.cs">
       <DependentUpon>201910171855083_AddedToModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910171958056_MadeDoctorTypeNullable.cs" />
+    <Compile Include="Migrations\201910171958056_MadeDoctorTypeNullable.Designer.cs">
+      <DependentUpon>201910171958056_MadeDoctorTypeNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Doctor.cs" />
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910171855083_AddedToModels.resx">
       <DependentUpon>201910171855083_AddedToModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171958056_MadeDoctorTypeNullable.resx">
+      <DependentUpon>201910171958056_MadeDoctorTypeNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
