@@ -23,9 +23,8 @@ namespace PrescriptionCapstone.Models
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-
-        [Display(Name = "Email Address")]
-        public string EmailAddress { get; set; }
+        [Display(Name ="Date of Birth")]
+        public string DateOfBirth { get; set; }
 
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
@@ -39,7 +38,10 @@ namespace PrescriptionCapstone.Models
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Appointment")]
         public DateTime? ScheduledAppointment { get; set; }
-      
+        public Log Log { get; set; }
+        public ICollection<Log> Logs { get; set; }
+
+
 
  
     }

@@ -95,7 +95,6 @@ namespace PrescriptionCapstone.Controllers
             Patient patient1 = context.Patients.Find(id);
             patient1.FirstName = patient.FirstName;
             patient1.LastName = patient.LastName;
-            patient1.EmailAddress = patient.EmailAddress;
             patient.Doctor = patient.Doctor;
             return View(patient);
         }

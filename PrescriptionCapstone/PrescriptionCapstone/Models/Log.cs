@@ -14,6 +14,9 @@ namespace PrescriptionCapstone.Models
         public int Id { get; set; }
         public DateTime Time { get; set; }
         public string Text { get; set; }
+        [ForeignKey("Patient")]
+        public int PatientsId { get; set; }
+        public Patient Patient { get; set; }
 
     
     }
