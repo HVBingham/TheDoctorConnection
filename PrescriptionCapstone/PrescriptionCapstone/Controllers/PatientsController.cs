@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using DocuSign.eSign.Model;
 using Microsoft.AspNet.Identity;
 using PrescriptionCapstone.Models;
 using SendGrid;
@@ -18,6 +19,8 @@ namespace PrescriptionCapstone.Controllers
     {
        public ApplicationDbContext context;
 
+        public object MailHelper { get; private set; }
+
         public PatientsController()
         {
             context = new ApplicationDbContext();
@@ -26,8 +29,8 @@ namespace PrescriptionCapstone.Controllers
         // GET: Patients
         public ActionResult Index()
         {
-            var patients = context.Patients.Include(p => p.Id);
-            return View(patients.ToList());
+            var patients = context.Patients.ToList();
+            return View(patients);
         }
 
         // GET: Patients/Details/5

@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,19 +13,26 @@ namespace PrescriptionCapstone.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("Doctor")]
-        public int DoctorId { get; set; }
+        public int? DoctorId { get; set; }
         public Doctor Doctor { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }    
 
         [Display(Name = "First Name")]
+        //[Required]
+        //[StringLength(3)]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
+        //[Required]
+        //[StringLength(5)]
         public string LastName { get; set; }
+
         [Display(Name ="Date of Birth")]
-        public string DateOfBirth { get;  set; }
+        public string DateOfBirth { get; set; }
+
+
 
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
@@ -39,10 +47,6 @@ namespace PrescriptionCapstone.Models
         [Display(Name = "Appointment")]
         public DateTime? ScheduledAppointment { get; set; }
         public Log Log { get; set; }
-        public ICollection<Log> Logs { get; set; }
-
-
-
- 
+        public ICollection<Log> Logs { get; set; } 
     }
 }

@@ -168,11 +168,11 @@ namespace PrescriptionCapstone.Controllers
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     if (model.UserRoles == "Doctor")
                     {
-                        return RedirectToAction("Create", "Doctor");
+                        return RedirectToAction("Create", "Doctors");
                     }
                     if(model.UserRoles == "Patient")
                     {
-                        return RedirectToAction("Create", "Patient");
+                        return RedirectToAction("Create", "Patients");
                     }
                    
                 }
