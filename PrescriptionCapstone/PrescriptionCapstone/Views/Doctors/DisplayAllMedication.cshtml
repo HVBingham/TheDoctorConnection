@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PrescriptionCapstone.Models.MedicationViewModel>
+
+@{
+    ViewBag.Title = "DisplayAllMedication";
+}
+
+<h2>Medication Library</h2>
+
+<form asp-controller="Doctors" asp-action="Sort">
+    <p>
+        Treatment: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SideEffect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOfDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Treatment)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SideEffect)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Treatment)
+            </td>
+        </tr>
+    }
+
+</table>
