@@ -209,9 +209,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910171704101_init.cs" />
-    <Compile Include="Migrations\201910171704101_init.Designer.cs">
-      <DependentUpon>201910171704101_init.cs</DependentUpon>
+    <Compile Include="Migrations\201910171807125_redodatabase.cs" />
+    <Compile Include="Migrations\201910171807125_redodatabase.Designer.cs">
+      <DependentUpon>201910171807125_redodatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171859590_Gettingnewdatabase.cs" />
+    <Compile Include="Migrations\201910171859590_Gettingnewdatabase.Designer.cs">
+      <DependentUpon>201910171859590_Gettingnewdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -307,8 +311,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910171704101_init.resx">
-      <DependentUpon>201910171704101_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910171807125_redodatabase.resx">
+      <DependentUpon>201910171807125_redodatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171859590_Gettingnewdatabase.resx">
+      <DependentUpon>201910171859590_Gettingnewdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
