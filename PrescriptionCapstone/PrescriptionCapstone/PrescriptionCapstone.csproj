@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201910171859590_Gettingnewdatabase.Designer.cs">
       <DependentUpon>201910171859590_Gettingnewdatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910171855083_AddedToModels.cs" />
+    <Compile Include="Migrations\201910171855083_AddedToModels.Designer.cs">
+      <DependentUpon>201910171855083_AddedToModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Doctor.cs" />
@@ -292,6 +296,11 @@
     <Content Include="Views\Doctors\PatientsLog.cshtml" />
     <Content Include="Views\Doctors\Appointments.cshtml" />
     <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910171859590_Gettingnewdatabase.resx">
       <DependentUpon>201910171859590_Gettingnewdatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171855083_AddedToModels.resx">
+      <DependentUpon>201910171855083_AddedToModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

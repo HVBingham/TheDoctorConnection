@@ -76,7 +76,6 @@ namespace PrescriptionCapstone.Controllers
                 Doctor editDoctor = context.Doctors.Find(id);
                 editDoctor.FirstName = doctor.FirstName;
                 editDoctor.LastName = doctor.LastName;
-                editDoctor.EmailAddress = doctor.EmailAddress;
 
                 return RedirectToAction("Index");
             }
