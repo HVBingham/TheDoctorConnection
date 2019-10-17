@@ -291,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Patient\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>

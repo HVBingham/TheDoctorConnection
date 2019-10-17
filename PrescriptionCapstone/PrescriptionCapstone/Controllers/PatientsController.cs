@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PrescriptionCapstone.Models;
 
 namespace PrescriptionCapstone.Controllers
@@ -57,6 +58,8 @@ namespace PrescriptionCapstone.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = User.Identity.GetUserId();
+                patient.UserId = user;
                 context.Patients.Add(patient);
                 context.SaveChanges();
                 return RedirectToAction("Index");
