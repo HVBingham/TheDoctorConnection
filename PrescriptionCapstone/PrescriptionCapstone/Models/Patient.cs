@@ -19,12 +19,24 @@ namespace PrescriptionCapstone.Models
         public ApplicationUser User { get; set; }    
 
         [Display(Name = "First Name")]
+        //[Required]
+        //[StringLength(3)]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
+        //[Required]
+        //[StringLength(5)]
         public string LastName { get; set; }
+<<<<<<< Updated upstream
         [Display(Name ="Date of Birth")]
         public string DateOfBirth { get; set; }
+=======
+
+        [Display(Name = "Email Address")]
+        //[Required] Validation but would need to be implemented in the views  @Html.ValidationMessageFor(m => m.FirstName) <--- example.
+        //[EmailAddress]
+        public string EmailAddress { get; set; }
+>>>>>>> Stashed changes
 
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
