@@ -12,7 +12,12 @@ namespace PrescriptionCapstone.Models
     {
         [Key]
         public int Id { get; set; }
-        public DateTime Time { get; set; }
+       
+        [DataType(DataType.Date)]
+        [Display(Name = "Time of log")]
+        public DateTime? Time { get; set; }
+       
+        [Display(Name = "Text")]
         public string Text { get; set; }
         [ForeignKey("Patient")]
         public int PatientsId { get; set; }

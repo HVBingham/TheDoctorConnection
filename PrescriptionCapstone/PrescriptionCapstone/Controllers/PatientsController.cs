@@ -4,16 +4,19 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using PrescriptionCapstone.Models;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace PrescriptionCapstone.Controllers
 {
     public class PatientsController : Controller
     {
-        ApplicationDbContext context;
+       public ApplicationDbContext context;
 
         public PatientsController()
         {
@@ -149,7 +152,7 @@ namespace PrescriptionCapstone.Controllers
 
         //public ActionResult confrimMedTaken(int Id, Patient patient)
         //{
- 
+
         //    patient = context.Patients.Find(Id);
 
         //    if (patient.Id)
@@ -165,7 +168,27 @@ namespace PrescriptionCapstone.Controllers
         //    patientFromDb.Log.Add(dt, text);
 
         //    return View(patientFromDb.Log);
-        //}
-
+        //}   
+       
+        
+            //private static void Main()
+            //{
+            //    SendEmail().Wait();
+            //}
+            public async Task PrescriptionEmail( int Id)
+            {
+                var patient = context.Patients.Where(p => p.Id == Id).SingleOrDefault();
+                var email = patient.User.Email;
+                var apiKey = Environment.GetEnvironmentVariable("Work");
+                var client = new SendGridClient("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");
+                var from = new EmailAddress("Doctorconnection@gmail.com", "Doctor");
+                var subject = "Prescription Status!";
+                var to = new EmailAddress(email);
+                var plainTextContent = "Your Prescription is ready for pick up";
+                var htmlContent = "<strong>Your Prescription is ready for pick up</strong>";
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+                var response = await client.SendEmailAsync(msg);
+            }        
     }
 }
+

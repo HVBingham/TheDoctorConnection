@@ -24,7 +24,7 @@ namespace PrescriptionCapstone.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Display(Name ="Date of Birth")]
-        public string DateOfBirth { get; set; }
+        public string DateOfBirth { get;  set; }
 
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
