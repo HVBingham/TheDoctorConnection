@@ -14,6 +14,7 @@ namespace PrescriptionCapstone.Controllers
     public class DoctorsController : Controller
     {
         ApplicationDbContext context;
+        private string patientDiagnosis;
 
         public DoctorsController()
         {
@@ -108,31 +109,105 @@ namespace PrescriptionCapstone.Controllers
             }
         }
 
-
         // GET: Presciption REST API
         public ActionResult DisplayAllMedication()
         {
-            var requestUrl = $"https://localhost:44315/api/Medications";
-            var result = new WebClient().DownloadString(requestUrl);
-            var jo = JArray.Parse(result);
-
-            List<MedicationViewModel> ListOfMedication = new List<MedicationViewModel>();
-
-            for (int i = 0; i < jo.Count; i++)
+            try
             {
-                MedicationViewModel medication = new MedicationViewModel();
+                var requestUrl = $"https://localhost:44315/api/Medications";
+                var result = new WebClient().DownloadString(requestUrl);
+                var jo = JArray.Parse(result);
+                List<MedicationViewModel> ListOfMedication = new List<MedicationViewModel>();
 
-                medication.Id = Convert.ToInt32(jo[i]["Id"]);
-                medication.Name = jo[i]["Name"].ToString();
-                medication.Description = jo[i]["Description"].ToString();
-                medication.SideEffect = jo[i]["SideEffect"].ToString();
-                medication.TimeOfDay = jo[i]["TimeOfDay"].ToString();
-                medication.Treatment = jo[i]["Treatment"].ToString();
-
-                ListOfMedication.Add(medication);
+                for (int i = 0; i < jo.Count; i++)
+                {
+                    MedicationViewModel medication = new MedicationViewModel();
+                    medication.Id = Convert.ToInt32(jo[i]["Id"]);
+                    medication.Name = jo[i]["Name"].ToString();
+                    medication.Description = jo[i]["Description"].ToString();
+                    medication.SideEffect = jo[i]["SideEffect"].ToString();
+                    medication.TimeOfDay = jo[i]["TimeOfDay"].ToString();
+                    medication.Treatment = jo[i]["Treatment"].ToString();
+                    ListOfMedication.Add(medication);
+                }
+                return View(ListOfMedication);
             }
-            return View(ListOfMedication);
+            catch
+            {
+                return View();
+            }
         }
+
+        // POST: Prescription REST API by Diagnosis
+        [HttpPost]
+        public ActionResult DisplayAllMedication(string searchString)
+        {
+            if (searchString == "")
+            {
+                return RedirectToAction("DisplayAllMedication");
+            }
+
+            try
+            {
+                patientDiagnosis = searchString;
+                var requestUrl = $"https://localhost:44315/api/Medications";
+                var result = new WebClient().DownloadString(requestUrl);
+                var jo = JArray.Parse(result);
+                List<MedicationViewModel> ListOfMedication = new List<MedicationViewModel>();
+
+                for (int i = 0; i < jo.Count; i++)
+                {
+                    if (jo[i]["Treatment"].ToString() == searchString)
+                    {
+                        MedicationViewModel medication = new MedicationViewModel();
+                        medication.Id = Convert.ToInt32(jo[i]["Id"]);
+                        medication.Name = jo[i]["Name"].ToString();
+                        medication.Description = jo[i]["Description"].ToString();
+                        medication.SideEffect = jo[i]["SideEffect"].ToString();
+                        medication.TimeOfDay = jo[i]["TimeOfDay"].ToString();
+                        medication.Treatment = jo[i]["Treatment"].ToString();
+                        ListOfMedication.Add(medication);
+                    }
+                }
+                return View(ListOfMedication);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Sorted Patients by Diagnosis
+        public ActionResult GetPatientsByDiagnosis()
+        {
+            try
+            {
+                Doctor doctor = GetDoctor();
+                List<Patient> filteredPatients = GetFilteredPatientsByDoctorId(doctor.Id);
+                return View("PatientsByDiagnosis", filteredPatients);
+            }
+            catch
+            {
+                return RedirectToAction("DisplayAllMedication");
+            }
+        }
+
+        // GET: doctor's patients by diagnosis
+        public List<Patient> GetFilteredPatientsByDoctorId(int id)
+        {
+            var patientsFromDb = context.Patients.Where(p => p.DoctorId == id);
+            var patientsFilteredByDiagnosis = patientsFromDb.Where(p => p.Diagnosis == patientDiagnosis).ToList();
+            return patientsFilteredByDiagnosis;
+        }
+
+        // GET: Doctor
+        public Doctor GetDoctor()
+        {
+            var userId = User.Identity.GetUserId();
+            Doctor doctor = context.Doctors.Where(d => d.UserId == userId).SingleOrDefault();
+            return doctor;
+        }
+
         public ActionResult CreatePatient()
         {
             Patient patient = new Patient();
@@ -187,9 +262,13 @@ namespace PrescriptionCapstone.Controllers
             
             context.SaveChanges();
             return RedirectToAction("Index");
-
-
         }
 
+        [HttpGet]
+        public ActionResult DoctorScheduledAppointments(int id)
+        {
+            var doctor = context.Patients.Where(d => d.Id == id).Select(p => p.ScheduledAppointment);
+            return View();
+        }
     }
 }

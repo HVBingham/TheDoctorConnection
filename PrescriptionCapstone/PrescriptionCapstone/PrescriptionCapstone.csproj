@@ -209,9 +209,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910181413181_AddedtoLoginView.cs" />
-    <Compile Include="Migrations\201910181413181_AddedtoLoginView.Designer.cs">
-      <DependentUpon>201910181413181_AddedtoLoginView.cs</DependentUpon>
+    <Compile Include="Migrations\201910181718400_newmigration.cs" />
+    <Compile Include="Migrations\201910181718400_newmigration.Designer.cs">
+      <DependentUpon>201910181718400_newmigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910181720554_RemovedEmail.cs" />
+    <Compile Include="Migrations\201910181720554_RemovedEmail.Designer.cs">
+      <DependentUpon>201910181720554_RemovedEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -293,6 +297,7 @@
     <Content Include="Views\Patients\Details.cshtml" />
     <Content Include="Views\Patients\Edit.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Doctors\PatientsByDiagnosis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -312,8 +317,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910181413181_AddedtoLoginView.resx">
-      <DependentUpon>201910181413181_AddedtoLoginView.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910181718400_newmigration.resx">
+      <DependentUpon>201910181718400_newmigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181720554_RemovedEmail.resx">
+      <DependentUpon>201910181720554_RemovedEmail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

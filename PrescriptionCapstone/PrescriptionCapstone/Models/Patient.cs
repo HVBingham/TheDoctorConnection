@@ -31,8 +31,6 @@ namespace PrescriptionCapstone.Models
         [Display(Name ="Date of Birth")]
         public string DateOfBirth { get; set; }
 
-
-
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
 
@@ -47,9 +45,5 @@ namespace PrescriptionCapstone.Models
         public DateTime? ScheduledAppointment { get; set; }
         public Log Log { get; set; }
         public ICollection<Log> Logs { get; set; }
-
-
-
- 
     }
 }

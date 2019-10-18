@@ -11,14 +11,13 @@
 </p>
 <table class="table">
     <tr>
-     
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.Diagnosis)
         </th>
@@ -27,17 +26,14 @@
         </th>
         <th></th>
     </tr>
-
 @foreach (var item in Model) {
     <tr>
-     
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
-      
         <td>
             @Html.DisplayFor(modelItem => item.Diagnosis)
         </td>
@@ -51,5 +47,33 @@
         </td>
     </tr>
 }
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Diagnosis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduledAppointment)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+
+        <script type="text/javascript">
+        function add_chatinline(){var hccid=81777266;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+        add_chatinline(); </script>
+    }
 
 </table>
