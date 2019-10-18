@@ -77,7 +77,6 @@ namespace PrescriptionCapstone.Controllers
                 Doctor editDoctor = context.Doctors.Find(id);
                 editDoctor.FirstName = doctor.FirstName;
                 editDoctor.LastName = doctor.LastName;
-                editDoctor.EmailAddress = doctor.EmailAddress;
 
                 return RedirectToAction("Index");
             }
@@ -133,7 +132,7 @@ namespace PrescriptionCapstone.Controllers
                 }
                 return View(ListOfMedication);
             }
-            catch 
+            catch
             {
                 return View();
             }
@@ -143,7 +142,7 @@ namespace PrescriptionCapstone.Controllers
         [HttpPost]
         public ActionResult DisplayAllMedication(string searchString)
         {
-            if(searchString == "")
+            if (searchString == "")
             {
                 return RedirectToAction("DisplayAllMedication");
             }
@@ -172,7 +171,7 @@ namespace PrescriptionCapstone.Controllers
                 }
                 return View(ListOfMedication);
             }
-            catch 
+            catch
             {
                 return View();
             }
@@ -187,7 +186,7 @@ namespace PrescriptionCapstone.Controllers
                 List<Patient> filteredPatients = GetFilteredPatientsByDoctorId(doctor.Id);
                 return View("PatientsByDiagnosis", filteredPatients);
             }
-            catch 
+            catch
             {
                 return RedirectToAction("DisplayAllMedication");
             }
@@ -207,6 +206,70 @@ namespace PrescriptionCapstone.Controllers
             var userId = User.Identity.GetUserId();
             Doctor doctor = context.Doctors.Where(d => d.UserId == userId).SingleOrDefault();
             return doctor;
+        }
+
+        public ActionResult CreatePatient()
+        {
+            Patient patient = new Patient();
+            return View(patient);
+        }
+
+        // POST: patients/Create
+        [HttpPost]
+        public ActionResult CreatePatient(Patient patient)
+        {
+            try
+            {
+                var user = User.Identity.GetUserId();
+                patient.UserId = user;
+                context.Patients.Add(patient);
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult EditPatient(int id)
+        {
+            Patient patient = context.Patients.Where(p => p.Id == id).SingleOrDefault();
+            return View(patient);
+        }
+
+        [HttpPost]
+        public ActionResult EditPatient(int id, Patient patient)
+        {
+            Patient editPatient = context.Patients.Find(id);
+            editPatient.FirstName = patient.FirstName;
+            editPatient.LastName = patient.LastName;
+            editPatient.EmailAddress = patient.EmailAddress;
+            editPatient.Diagnosis = patient.Diagnosis;
+            editPatient.Medication = patient.Medication;
+            patient.Medications.Add(patient.Medication);
+           // if (editPatient.Medication == patient.Medication)
+           // {
+           //     Console.WriteLine("That patient is already taking that medication");
+           // }
+           //else if(editPatient.Medication != patient.Medication)
+           // {
+           //     editPatient.Medication = patient.Medication;
+           //     context.Medications.Add(patient.Medication);
+                
+           // }
+            
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult DoctorScheduledAppointments(int id)
+        {
+            var doctor = context.Patients.Where(d => d.Id == id).Select(p => p.ScheduledAppointment);
+            return View();
         }
     }
 }

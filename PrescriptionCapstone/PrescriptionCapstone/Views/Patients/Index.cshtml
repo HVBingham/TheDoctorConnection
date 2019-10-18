@@ -12,14 +12,18 @@
 <table class="table">
     <tr>
         <th>
+<<<<<<< HEAD
+=======
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+>>>>>>> 9ff6637397a017d2f7f95a46d0a5c4d77e6a446b
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Diagnosis)
         </th>
@@ -29,6 +33,7 @@
         <th></th>
     </tr>
 
+<<<<<<< HEAD
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -53,5 +58,35 @@
         </td>
     </tr>
 }
+=======
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Diagnosis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduledAppointment)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+
+        <script type="text/javascript">
+        function add_chatinline(){var hccid=81777266;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+        add_chatinline(); </script>
+    }
+>>>>>>> 9ff6637397a017d2f7f95a46d0a5c4d77e6a446b
 
 </table>
