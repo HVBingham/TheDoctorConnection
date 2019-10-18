@@ -209,9 +209,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910181526254_pulledfromrespository.cs" />
-    <Compile Include="Migrations\201910181526254_pulledfromrespository.Designer.cs">
-      <DependentUpon>201910181526254_pulledfromrespository.cs</DependentUpon>
+    <Compile Include="Migrations\201910182034346_medol.cs" />
+    <Compile Include="Migrations\201910182034346_medol.Designer.cs">
+      <DependentUpon>201910182034346_medol.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -293,6 +293,7 @@
     <Content Include="Views\Patients\Details.cshtml" />
     <Content Include="Views\Patients\Edit.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Doctors\PatientsByDiagnosis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -312,8 +313,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910181526254_pulledfromrespository.resx">
-      <DependentUpon>201910181526254_pulledfromrespository.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910182034346_medol.resx">
+      <DependentUpon>201910182034346_medol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

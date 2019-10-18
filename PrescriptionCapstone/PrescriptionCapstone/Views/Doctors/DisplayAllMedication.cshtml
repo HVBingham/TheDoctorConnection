@@ -6,7 +6,7 @@
 
 <h2>Medication Library</h2>
 
-<form asp-controller="Doctors" asp-action="Sort">
+<form asp-action="DisplayAllMedication" asp-controller="Doctors" method="post">
     <p>
         Treatment: <input type="text" name="SearchString" />
         <input type="submit" value="Filter" />
@@ -55,3 +55,9 @@
     }
 
 </table>
+
+@using (Html.BeginForm("GetPatientsByDiagnosis", "Doctors"))
+{
+    <button type="submit">Patients By Diagnosis</button>
+}
+
