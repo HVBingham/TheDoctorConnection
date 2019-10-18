@@ -50,9 +50,9 @@ namespace PrescriptionCapstone.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "UserName")]
+        [Display(Name = "Email")]
    
-        public string UserName { get; set; }
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -61,6 +61,9 @@ namespace PrescriptionCapstone.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+
+     
     }
 
     public class RegisterViewModel
@@ -73,10 +76,6 @@ namespace PrescriptionCapstone.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [Required]
-        [Display(Name="UserName")]
-        public string UserName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
