@@ -191,6 +191,14 @@ namespace PrescriptionCapstone.Controllers
 
 
         }
+        [HttpGet]
+        public ActionResult DoctorScheduledAppointments(int id)
+        {
+            var doctor = context.Patients.Where(d => d.Id == id).Select(p => p.ScheduledAppointment);
+            return View();
+
+
+        }
 
     }
 }
