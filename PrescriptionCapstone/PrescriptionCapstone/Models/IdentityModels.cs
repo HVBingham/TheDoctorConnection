@@ -23,6 +23,7 @@ namespace PrescriptionCapstone.Models
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Log> Log { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -49,9 +49,6 @@ namespace PrescriptionCapstone.Controllers
             return View(patient);
         }
 
-        // POST: Patients/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Patient patient)
@@ -85,9 +82,6 @@ namespace PrescriptionCapstone.Controllers
             return View(patient);
         }
 
-        // POST: Patients/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Patient patient)
@@ -147,8 +141,6 @@ namespace PrescriptionCapstone.Controllers
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-
         }
 
         /*public ActionResult SelectMedication()
@@ -166,14 +158,15 @@ namespace PrescriptionCapstone.Controllers
             return View(medication);
             //what if patient does not confirm?
         }
-        /*public ActionResult patientLog(int Id, string text)
+        public ActionResult patientLog(int Id, Log text)
         {
             Patient patientFromDb = context.Patients.Find(Id);
             DateTime dt = DateTime.Now;
-            patientFromDb.Log.Add(dt, text);
-
-           return View(patientFromDb.Log);
-        }*/
+            Log log = new Log();
+            context.Log.Add(log);
+            context.SaveChanges();
+            return View(patientFromDb.Log);
+        }
 
     }
 }
