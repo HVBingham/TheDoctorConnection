@@ -12,7 +12,7 @@ namespace PrescriptionCapstone.Models
         [Key]
         public int Id { get; set; }
         [ForeignKey("Doctor")]
-        public int DoctorId { get; set; }
+        public int? DoctorId { get; set; }
         public Doctor Doctor { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
@@ -27,6 +27,7 @@ namespace PrescriptionCapstone.Models
         //[Required]
         //[StringLength(5)]
         public string LastName { get; set; }
+
         [Display(Name ="Date of Birth")]
         public string DateOfBirth { get; set; }
 
@@ -34,6 +35,9 @@ namespace PrescriptionCapstone.Models
         //[Required] Validation but would need to be implemented in the views  @Html.ValidationMessageFor(m => m.FirstName) <--- example.
         //[EmailAddress]
         public string EmailAddress { get; set; }
+
+        [Display(Name ="Date of Birth")]
+        public string DateOfBirth { get; set; }
 
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
