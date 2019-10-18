@@ -171,6 +171,7 @@ namespace PrescriptionCapstone.Controllers
             Patient editPatient = context.Patients.Find(id);
             editPatient.FirstName = patient.FirstName;
             editPatient.LastName = patient.LastName;
+            editPatient.EmailAddress = patient.EmailAddress;
             editPatient.Diagnosis = patient.Diagnosis;
             editPatient.Medication = patient.Medication;
             patient.Medications.Add(patient.Medication);
@@ -187,6 +188,14 @@ namespace PrescriptionCapstone.Controllers
             
             context.SaveChanges();
             return RedirectToAction("Index");
+
+
+        }
+        [HttpGet]
+        public ActionResult DoctorScheduledAppointments(int id)
+        {
+            var doctor = context.Patients.Where(d => d.Id == id).Select(p => p.ScheduledAppointment);
+            return View();
 
 
         }

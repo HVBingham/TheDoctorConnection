@@ -31,7 +31,10 @@ namespace PrescriptionCapstone.Models
         [Display(Name ="Date of Birth")]
         public string DateOfBirth { get; set; }
 
-
+        [Display(Name = "Email Address")]
+        //[Required] Validation but would need to be implemented in the views  @Html.ValidationMessageFor(m => m.FirstName) <--- example.
+        //[EmailAddress]
+        public string EmailAddress { get; set; }
 
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
