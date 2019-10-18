@@ -209,9 +209,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910171704101_init.cs" />
-    <Compile Include="Migrations\201910171704101_init.Designer.cs">
-      <DependentUpon>201910171704101_init.cs</DependentUpon>
+    <Compile Include="Migrations\201910171745197_initRoundTwoAgain.cs" />
+    <Compile Include="Migrations\201910171745197_initRoundTwoAgain.Designer.cs">
+      <DependentUpon>201910171745197_initRoundTwoAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -288,6 +288,12 @@
     <Content Include="Views\Doctors\PatientsLog.cshtml" />
     <Content Include="Views\Doctors\Appointments.cshtml" />
     <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Doctors\PatientsByDiagnosis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,8 +313,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910171704101_init.resx">
-      <DependentUpon>201910171704101_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910171745197_initRoundTwoAgain.resx">
+      <DependentUpon>201910171745197_initRoundTwoAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

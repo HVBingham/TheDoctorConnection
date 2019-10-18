@@ -25,5 +25,6 @@ namespace PrescriptionCapstone.Models
 
         [Display(Name = "Treatment")]
         public string Treatment { get; set; }
+
     }
 }

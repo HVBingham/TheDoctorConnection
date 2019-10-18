@@ -39,8 +39,6 @@ namespace PrescriptionCapstone.Models
         //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Appointment")]
         public DateTime? ScheduledAppointment { get; set; }
-      
-
  
     }
 }

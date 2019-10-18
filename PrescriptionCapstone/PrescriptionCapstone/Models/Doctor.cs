@@ -29,9 +29,6 @@ namespace PrescriptionCapstone.Models
 
         [Display(Name = "Daily Appointment")]
         public DateTime? Appointment { get; set; }
-
-      
-
   
     }
 }
