@@ -39,46 +39,18 @@
         </div>
     </div>
 
-
-
-
     <div class="form-group">
-        @Html.LabelFor(model => model.Diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.DoctorId, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Diagnosis, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Diagnosis, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.DoctorId, new SelectList(Model.Doctors, "Id", "LastName"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DoctorId, "", new { @class = "text-danger" })
         </div>
     </div>
-
-<<<<<<< HEAD
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-=======
-    <div class="form-group">
-        @Html.LabelFor(model => model.Doctor.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Doctor.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Doctor.FirstName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Doctor.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Doctor.LastName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Doctor.FirstName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-
 
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
->>>>>>> 9ff6637397a017d2f7f95a46d0a5c4d77e6a446b
+            <input type="submit" value="Finish" class="btn btn-default" />
         </div>
     </div>
 </div>

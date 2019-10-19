@@ -11,44 +11,48 @@ namespace PrescriptionCapstone.Models
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("Doctor")]
-        public int? DoctorId { get; set; }
-        public Doctor Doctor { get; set; }
-        [ForeignKey("User")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }    
 
         [Display(Name = "First Name")]
-        //[Required]
-        //[StringLength(3)]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
-        //[Required]
-        //[StringLength(5)]
         public string LastName { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name ="Date of Birth")]
-        public string DateOfBirth { get; set; }
-
-        [Display(Name = "Email Address")]
-        //[Required] Validation but would need to be implemented in the views  @Html.ValidationMessageFor(m => m.FirstName) <--- example.
-        //[EmailAddress]
-        public string EmailAddress { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Appointment")]
+        public DateTime? ScheduledAppointment { get; set; }
+
+        [Display(Name = "Log/Notes")]
+        public Log Log { get; set; }
+        public ICollection<Log> Logs { get; set; }
+
+        [Display(Name = "Medication Options")]
+        public ICollection<MedicationViewModel> MedicationOptions { get; set; }
+
         [ForeignKey("Medication")]
         public int? MedicationId { get; set; }
         public Medication Medication { get; set; }
-        public ICollection<Medication> Medications { get; set; }
+        public ICollection<Medication> CurrentMedication { get; set; }
 
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Appointment")]
-        public DateTime? ScheduledAppointment { get; set; }
-        public Log Log { get; set; }
-        public ICollection<Log> Logs { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
+        [ForeignKey("Doctor")]
+        [Display(Name = "Doctor")]
+        public int DoctorId { get; set; }
+        public Doctor Doctor { get; set; }
+        public IEnumerable<Doctor> Doctors { get; set; }
+
+
     }
 }
