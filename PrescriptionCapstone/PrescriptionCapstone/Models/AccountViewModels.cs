@@ -51,7 +51,6 @@ namespace PrescriptionCapstone.Models
     {
         [Required]
         [Display(Name = "User Name")]
-   
         public string UserName { get; set; }
 
         [Required]
@@ -61,6 +60,9 @@ namespace PrescriptionCapstone.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+
+     
     }
 
     public class RegisterViewModel

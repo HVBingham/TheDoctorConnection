@@ -177,13 +177,14 @@ namespace PrescriptionCapstone.Controllers
             }
         }
 
-        /*public ActionResult SelectMedication()
+        public ActionResult AddSelectedMedication(int Id, Patient medicaiton)
         {
-            //view list from MD 
-            //select medication
-            //store selected option in a variable 
-            //notify MD??
-        }*/
+            Patient patientFromDb = context.Patients.Find(Id);
+            Patient medicationFromDb = context.Patients.Where(p => p.Medication == medicaiton.Medication).FirstOrDefault();
+            context.Patients.Add(medicationFromDb);
+            context.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
         public ActionResult confrimMedTaken(Medication medication)
         {
             Medication medicatioFromDb = context.Medications.Where(m => m.PatientId == medication.PatientId).FirstOrDefault();

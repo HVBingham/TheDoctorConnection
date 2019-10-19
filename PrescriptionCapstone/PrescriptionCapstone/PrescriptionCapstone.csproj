@@ -209,34 +209,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910181616238_updatedAfterPull.cs" />
-    <Compile Include="Migrations\201910181616238_updatedAfterPull.Designer.cs">
-      <DependentUpon>201910181616238_updatedAfterPull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910181920270_modelchange.cs" />
-    <Compile Include="Migrations\201910181920270_modelchange.Designer.cs">
-      <DependentUpon>201910181920270_modelchange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910191731107_previouslogin.cs" />
-    <Compile Include="Migrations\201910191731107_previouslogin.Designer.cs">
-      <DependentUpon>201910191731107_previouslogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910191819408_changes.cs" />
-    <Compile Include="Migrations\201910191819408_changes.Designer.cs">
-      <DependentUpon>201910191819408_changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910191851216_newbie.cs" />
-    <Compile Include="Migrations\201910191851216_newbie.Designer.cs">
-      <DependentUpon>201910191851216_newbie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910191926568_fkpatientdoctor.cs" />
-    <Compile Include="Migrations\201910191926568_fkpatientdoctor.Designer.cs">
-      <DependentUpon>201910191926568_fkpatientdoctor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910192021388_againback.cs" />
-    <Compile Include="Migrations\201910192021388_againback.Designer.cs">
-      <DependentUpon>201910192021388_againback.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Doctor.cs" />
@@ -339,27 +311,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910181616238_updatedAfterPull.resx">
-      <DependentUpon>201910181616238_updatedAfterPull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910181920270_modelchange.resx">
-      <DependentUpon>201910181920270_modelchange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910191731107_previouslogin.resx">
-      <DependentUpon>201910191731107_previouslogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910191819408_changes.resx">
-      <DependentUpon>201910191819408_changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910191851216_newbie.resx">
-      <DependentUpon>201910191851216_newbie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910191926568_fkpatientdoctor.resx">
-      <DependentUpon>201910191926568_fkpatientdoctor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910192021388_againback.resx">
-      <DependentUpon>201910192021388_againback.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
