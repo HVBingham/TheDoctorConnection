@@ -40,10 +40,27 @@
         </div>
     </div>
 
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Diagnosis, new SelectList(Model.MedicationOptions, "Id", "Treatment"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Diagnosis, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
 
     <div class="form-group">
+        @Html.LabelFor(model => model.MedicationId, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MedicationId, new SelectList(Model.MedicationOptions, "Id", "Name"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MedicationId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+
+       
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Update" class="btn btn-default" />
         </div>
     </div>
 </div>

@@ -24,10 +24,17 @@ namespace PrescriptionCapstone.Controllers
         // GET: Doctors
         public ActionResult Index()
         {
-            var doctorId = User.Identity.GetUserId();
-            Doctor doctor = context.Doctors.Where(d => d.UserId == doctorId).SingleOrDefault();
-            var listofPatients = context.Patients.Where(p => p.DoctorId == doctor.Id).ToList();
-            return View(listofPatients);
+            try
+            {
+                var doctorId = User.Identity.GetUserId();
+                Doctor doctor = context.Doctors.Where(d => d.ApplicationId == doctorId).SingleOrDefault();
+                var listofPatients = context.Patients.Where(p => p.DoctorId == doctor.Id).ToList();
+                return View(listofPatients);
+            }
+            catch 
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // GET: Doctors/Details/5
@@ -49,8 +56,7 @@ namespace PrescriptionCapstone.Controllers
         {
             try
             {
-                var user = User.Identity.GetUserId();
-                doctor.UserId = user;
+                doctor.ApplicationId = User.Identity.GetUserId();
                 context.Doctors.Add(doctor);
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -204,64 +210,14 @@ namespace PrescriptionCapstone.Controllers
         public Doctor GetDoctor()
         {
             var userId = User.Identity.GetUserId();
-            Doctor doctor = context.Doctors.Where(d => d.UserId == userId).SingleOrDefault();
+            Doctor doctor = context.Doctors.Where(d => d.ApplicationId == userId).SingleOrDefault();
             return doctor;
         }
 
-        public ActionResult CreatePatient()
+        // Register New Patient Login
+        public ActionResult CreateLogin()
         {
-            Patient patient = new Patient();
-            return View(patient);
-        }
-
-        // POST: patients/Create
-        [HttpPost]
-        public ActionResult CreatePatient(Patient patient)
-        {
-            try
-            {
-                var user = User.Identity.GetUserId();
-                patient.UserId = user;
-                context.Patients.Add(patient);
-                context.SaveChanges();
-
-                return RedirectToAction("Index");
-
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        [HttpGet]
-        public ActionResult EditPatient(int id)
-        {
-            Patient patient = context.Patients.Where(p => p.Id == id).SingleOrDefault();
-            return View(patient);
-        }
-
-        [HttpPost]
-        public ActionResult EditPatient(int id, Patient patient)
-        {
-            Patient editPatient = context.Patients.Find(id);
-            editPatient.FirstName = patient.FirstName;
-            editPatient.LastName = patient.LastName;
-            editPatient.Diagnosis = patient.Diagnosis;
-            editPatient.Medication = patient.Medication;
-            patient.Medications.Add(patient.Medication);
-           // if (editPatient.Medication == patient.Medication)
-           // {
-           //     Console.WriteLine("That patient is already taking that medication");
-           // }
-           //else if(editPatient.Medication != patient.Medication)
-           // {
-           //     editPatient.Medication = patient.Medication;
-           //     context.Medications.Add(patient.Medication);
-                
-           // }
-            
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Register", "Account", "get");
         }
 
         [HttpGet]
