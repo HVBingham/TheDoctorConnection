@@ -1,0 +1,18 @@
+﻿@model PrescriptionCapstone.Models.Patient
+
+@{
+    ViewBag.Title = "RefillEmail";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RefillEmail</h2>
+
+<h3> Would you like to send this Refill Email?</h3>
+
+@using (Html.BeginForm("RefillEmail"))
+{
+    @Html.HiddenFor(Model => Model.User.Email);
+    <button type="submit">Refill</button>
+}
+
+

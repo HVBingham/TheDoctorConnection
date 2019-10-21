@@ -22,6 +22,29 @@
         <th></th>
     </tr>
 
+<<<<<<< HEAD
+@foreach (var item in Model) {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        <input type="button" value="Prescription" onclick="location.href='@Url.Action("PrescriptionEmail", "Patients", new { Id=item.Id})'"
+    </td>
+    <td>
+        <input type="button" value="Refill" onclick="location.href='@Url.Action("RefillEmail", "Patients", new { Id=item.Id})'"
+    </td>
+    
+</tr>
+}
+=======
     @foreach (var item in Model)
     {
         <tr>
@@ -39,5 +62,6 @@
             </td>
         </tr>
     }
+>>>>>>> e8bdb62fbbee43a4f1f7f1809dfa0a4b868ea574
 
 </table>

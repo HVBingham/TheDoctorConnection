@@ -12,6 +12,10 @@ namespace PrescriptionCapstone.Models
         [Key]
         public int Id { get; set; }
 
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }    
+
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
@@ -21,8 +25,7 @@ namespace PrescriptionCapstone.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name ="Date of Birth")]
-        public DateTime DateOfBirth { get; set; }
-
+        public string DateOfBirth { get; set; }
         [Display(Name = "Diagnosis")]
         public string Diagnosis { get; set; }
 
@@ -30,6 +33,11 @@ namespace PrescriptionCapstone.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Appointment")]
         public DateTime? ScheduledAppointment { get; set; }
+
+        [Display(Name = "Refill Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? RefillDate { get; set; }
 
         [Display(Name = "Log/Notes")]
         public Log Log { get; set; }
@@ -52,6 +60,7 @@ namespace PrescriptionCapstone.Models
         public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }
         public IEnumerable<Doctor> Doctors { get; set; }
+
 
 
     }
