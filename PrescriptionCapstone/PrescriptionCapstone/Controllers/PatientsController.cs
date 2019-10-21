@@ -29,6 +29,7 @@ namespace PrescriptionCapstone.Controllers
         }
 
         // GET: Patients/Details/5
+        [Authorize(Roles = RoleName.Doctor)]
         public ActionResult Details(int? id)
         {
             //if (id == null)
@@ -66,7 +67,7 @@ namespace PrescriptionCapstone.Controllers
                 patient.ApplicationId = User.Identity.GetUserId();
                 context.Patients.Add(patient);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Dashboard");
             }
 
          

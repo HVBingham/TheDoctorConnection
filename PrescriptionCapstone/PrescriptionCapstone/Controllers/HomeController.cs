@@ -51,7 +51,7 @@ namespace PrescriptionCapstone.Controllers
                     }
                     else 
                     {
-                        return RedirectToAction("Details", "Patients");
+                        return RedirectToAction("Dashboard", "Patients");
                     }
                 }
             }
