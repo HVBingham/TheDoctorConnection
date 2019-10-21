@@ -2,22 +2,16 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
- @*changed name from View to Details*@
-<h2>View</h2>
+
+<h2>Details</h2>
 
 <div>
     <h4>Patient</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
-
+       
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -35,11 +29,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
+            @Html.DisplayNameFor(model => model.DateOfBirth)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
+            @Html.DisplayFor(model => model.DateOfBirth)
         </dd>
 
         <dt>
@@ -51,11 +45,27 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.MedicationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicationId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ScheduledAppointment)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ScheduledAppointment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RefillDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RefillDate)
         </dd>
 
     </dl>

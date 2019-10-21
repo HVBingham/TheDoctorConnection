@@ -1,0 +1,28 @@
+﻿@model PrescriptionCapstone.Models.Patient
+
+@{
+    ViewBag.Title = "PrescriptionEmail";
+}
+
+<h2>PrescriptionEmail</h2>
+
+<h3> Would you like to send this Prescription Email?</h3>
+
+@*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="confirm" class="btn btn-default" />l
+        </div>
+        @Html.ActionLink("Back to List", "Index", "Doctors")
+    </div>*@
+
+@using (Html.BeginForm("PrescriptionEmail"))
+{
+    @Html.HiddenFor(Model => Model.User.Email);
+    <button type="submit">Patients By Diagnosis</button>
+}
+
+
+
+
+
+

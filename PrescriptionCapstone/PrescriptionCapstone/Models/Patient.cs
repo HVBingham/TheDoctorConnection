@@ -42,11 +42,16 @@ namespace PrescriptionCapstone.Models
         public Medication Medication { get; set; }
         public ICollection<Medication> Medications { get; set; }
 
-        //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Appointment")]
         public DateTime? ScheduledAppointment { get; set; }
         public Log Log { get; set; }
-        public ICollection<Log> Logs { get; set; } 
+        public ICollection<Log> Logs { get; set; }
+
+        [Display(Name = "Refill Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? RefillDate { get; set; }
     }
 }

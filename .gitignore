@@ -332,3 +332,4 @@ ASALocalRun/
 *web.config
 *Migrations
 *App_Data
+*ApiKey.cs

@@ -228,8 +228,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910181342094_gettingridofmigrationerror.cs" />
+    <Compile Include="Migrations\201910181342094_gettingridofmigrationerror.Designer.cs">
+      <DependentUpon>201910181342094_gettingridofmigrationerror.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910181402462_fixingmydatabase.cs" />
+    <Compile Include="Migrations\201910181402462_fixingmydatabase.Designer.cs">
+      <DependentUpon>201910181402462_fixingmydatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApiKey.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Log.cs" />
@@ -299,10 +308,18 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Doctors\DisplayAllMedication.cshtml" />
     <Content Include="Views\Doctors\Index.cshtml" />
-    <Content Include="Views\Doctors\Details.cshtml" />
     <Content Include="Views\Doctors\PatientsLog.cshtml" />
     <Content Include="Views\Doctors\Appointments.cshtml" />
     <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Patients\PrescriptionEmail.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\View.cshtml" />
+    <Content Include="Views\Patients\RefillEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,6 +337,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201910181342094_gettingridofmigrationerror.resx">
+      <DependentUpon>201910181342094_gettingridofmigrationerror.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181402462_fixingmydatabase.resx">
+      <DependentUpon>201910181402462_fixingmydatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

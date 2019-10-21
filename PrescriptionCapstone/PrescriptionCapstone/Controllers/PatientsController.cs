@@ -7,7 +7,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using DocuSign.eSign.Model;
 using Microsoft.AspNet.Identity;
 using PrescriptionCapstone.Models;
 using SendGrid;
@@ -17,9 +16,9 @@ namespace PrescriptionCapstone.Controllers
 {
     public class PatientsController : Controller
     {
-       public ApplicationDbContext context;
+        public ApplicationDbContext context;
 
-        public object MailHelper { get; private set; }
+        //public object MailHelper { get; private set; }
 
         public PatientsController()
         {
@@ -51,7 +50,7 @@ namespace PrescriptionCapstone.Controllers
         // GET: Patients/Create
         public ActionResult Create()
         {
-            Patient patient=new Patient();
+            Patient patient = new Patient();
             return View(patient);
         }
 
@@ -71,7 +70,7 @@ namespace PrescriptionCapstone.Controllers
                 return RedirectToAction("Index");
             }
 
-         
+
             return View(patient);
         }
 
@@ -168,30 +167,70 @@ namespace PrescriptionCapstone.Controllers
         //{
         //    Patient patientFromDb = context.Patients.Find(Id);
         //    DateTime dt = DateTime.Now;
-        //    patientFromDb.Log.Add(dt, text);
+        //    patientFromDb.Logs.Add(text).t;
 
         //    return View(patientFromDb.Log);
-        //}   
-       
-        
-            //private static void Main()
-            //{
-            //    SendEmail().Wait();
-            //}
-            public async Task PrescriptionEmail( int Id)
+        //}
+
+
+        //private static void Main()
+        //{
+        //    SendEmail().Wait();
+        //}
+        public async Task<ActionResult> PrescriptionEmail(int id)
+        {
+            Patient patient = context.Patients.Include(p => p.User).FirstOrDefault(p => p.Id == id);
+
+
+
+            return View(patient);
+
+        }
+        [HttpPost]
+        public async Task<ActionResult> PrescriptionEmail(Patient patient)
+        {
+
+            string email = patient.User.Email;
+            //var apiKey = Environment.GetEnvironmentVariable("Work");
+            var client = new SendGridClient(ApiKey.sendgridapi);
+            var from = new EmailAddress("michaelrackowski@gmail.com", "Michael Rack");
+            var subject = "Prescription Status!";
+            var to = new EmailAddress(email, "Myself");
+            var plainTextContent = "Your Prescription is ready for pick up";
+            var htmlContent = "<strong>Your Prescription is ready for pick up</strong>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+            var startdate = DateTime.Today;
+
+            return RedirectToAction("Index");
+        }
+        public async Task<ActionResult> RefillEmail(int id)
+        {
+            Patient patient = context.Patients.Include(p => p.User).FirstOrDefault(p => p.Id == id);
+
+
+           // return View("Index");
+            return View(patient);
+        }
+        [HttpPost]
+        public async Task<ActionResult> RefillEmail(Patient patient)
             {
-                var patient = context.Patients.Where(p => p.Id == Id).SingleOrDefault();
-                var email = patient.User.Email;
-                var apiKey = Environment.GetEnvironmentVariable("Work");
-                var client = new SendGridClient("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");
-                var from = new EmailAddress("Doctorconnection@gmail.com", "Doctor");
-                var subject = "Prescription Status!";
-                var to = new EmailAddress(email);
-                var plainTextContent = "Your Prescription is ready for pick up";
-                var htmlContent = "<strong>Your Prescription is ready for pick up</strong>";
-                var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-                var response = await client.SendEmailAsync(msg);
-            }        
+            string email = patient.User.Email;
+            var client = new SendGridClient(ApiKey.sendgridapi);
+            var from = new EmailAddress("michaelrackowski@gmail.com", "Michael Rack");
+            var subject = "Prescription Status!";
+            var to = new EmailAddress(email, "Myself");
+            var plainTextContent = "Your prescription is almost up please notify your doctor for a refill";
+            var htmlContent = "<strong>Your prescription is almost up please notify your doctor for a refill</strong>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+            var startdate = DateTime.Today;
+
+            return RedirectToAction("Index");
+        }
     }
 }
+   
+
+
 
