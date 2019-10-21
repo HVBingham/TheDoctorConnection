@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json.Linq;
 using PrescriptionCapstone.Models;
 using SendGrid;
 using SendGrid.Helpers.Mail;
@@ -35,11 +36,14 @@ namespace PrescriptionCapstone.Controllers
         // GET: Patients/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = context.Patients.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            var applicationId = User.Identity.GetUserId();
+            Patient patient = context.Patients.FirstOrDefault(p => p.ApplicationId == applicationId);
+
+            //Patient patient = context.Patients.Find(id);
             if (patient == null)
             {
                 return HttpNotFound();
@@ -50,21 +54,23 @@ namespace PrescriptionCapstone.Controllers
         // GET: Patients/Create
         public ActionResult Create()
         {
-            Patient patient = new Patient();
+
+            var doctors = context.Doctors.ToList();
+            Patient patient = new Patient()
+            {
+                Doctors = doctors
+            };
+
             return View(patient);
         }
 
-        // POST: Patients/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Patient patient)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity.GetUserId();
-                patient.UserId = user;
+                patient.ApplicationId = User.Identity.GetUserId();
                 context.Patients.Add(patient);
                 context.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,13 +81,16 @@ namespace PrescriptionCapstone.Controllers
         }
 
         // GET: Patients/Edit/5
+        [Authorize(Roles = RoleName.Doctor)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var medicationOptions = GetMedicationFromAPI();
             Patient patient = context.Patients.Find(id);
+            patient.MedicationOptions = medicationOptions;
             if (patient == null)
             {
                 return HttpNotFound();
@@ -90,11 +99,9 @@ namespace PrescriptionCapstone.Controllers
             return View(patient);
         }
 
-        // POST: Patients/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Doctor)]
         public ActionResult Edit(int id, Patient patient)
         {
             Patient patient1 = context.Patients.Find(id);
@@ -138,39 +145,76 @@ namespace PrescriptionCapstone.Controllers
             }
             base.Dispose(disposing);
         }
-        /*public ActionResult SelectAppointment()
+
+        [Authorize(Roles = RoleName.Doctor)]
+        public List<MedicationViewModel> GetMedicationFromAPI()
         {
-            Doctor appointment = new 
-        }   
-*/
-        /*public ActionResult SelectMedication()
+            var requestUrl = $"https://localhost:44315/api/Medications";
+            var result = new WebClient().DownloadString(requestUrl);
+            var jo = JArray.Parse(result);
+            List<MedicationViewModel> ListOfMedication = new List<MedicationViewModel>();
+
+
+            for (int i = 0; i < jo.Count; i++)
+            {
+                MedicationViewModel medication = new MedicationViewModel();
+                medication.Id = Convert.ToInt32(jo[i]["Id"]);
+                medication.Name = jo[i]["Name"].ToString();
+                medication.Description = jo[i]["Description"].ToString();
+                medication.SideEffect = jo[i]["SideEffect"].ToString();
+                medication.TimeOfDay = jo[i]["TimeOfDay"].ToString();
+                medication.Treatment = jo[i]["Treatment"].ToString();
+                ListOfMedication.Add(medication);
+            }
+            return ListOfMedication;
+        }
+
+        public ActionResult SelectAppointment(Doctor value, Doctor appointment)
         {
-            //view list from MD 
-            //select medication
-            //store selected option in a variable 
-            //notify MD??
-        }*/
+            Doctor appointmentsFromDb = context.Doctors.Where(d => d.Appointment == appointment.Appointment).FirstOrDefault();
+            
+            if (appointmentsFromDb != null)
+            {
+                return View("Appointment not available" + RedirectToAction("SelectAppointment"));
+            }
+            else
+            {
+                context.Doctors.Add(appointment);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
 
 
-        //public ActionResult confrimMedTaken(int Id, Patient patient)
-        //{
-
-        //    patient = context.Patients.Find(Id);
-
-        //    if (patient.Id)
-        //    {
-
-        //    }
-        //    return View(medications);
-        //}
-        //public ActionResult patientLog(int Id, string text)
-        //{
-        //    Patient patientFromDb = context.Patients.Find(Id);
-        //    DateTime dt = DateTime.Now;
-        //    patientFromDb.Logs.Add(text).t;
-
-        //    return View(patientFromDb.Log);
-        //}
+        public ActionResult AddSelectedMedication(int Id, Patient medicaiton)
+        {
+            Patient patientFromDb = context.Patients.Find(Id);
+            Patient medicationFromDb = context.Patients.Where(p => p.Medication == medicaiton.Medication).FirstOrDefault();
+            context.Patients.Add(medicationFromDb);
+            context.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
+        public ActionResult confrimMedTaken(Medication medication)
+        {
+            Medication medicatioFromDb = context.Medications.Where(m => m.PatientId == medication.PatientId).FirstOrDefault();
+            medication.MedicationConfirmed = true;
+            context.SaveChanges();
+            return View(medication);
+            //what if patient does not confirm?
+        }
+        public ActionResult patientLog(int Id, Log text)
+        {
+            Patient patientFromDb = context.Patients.Find(Id);
+            DateTime dt = DateTime.Now;
+            Log log = new Log();
+            context.Log.Add(log);
+            context.SaveChanges();
+            return View(patientFromDb.Log);
+        }
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
 
 
         //private static void Main()

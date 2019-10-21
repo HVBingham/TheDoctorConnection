@@ -215,9 +215,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\201910171814163_newdatabse.cs" />
     <Compile Include="Migrations\201910171814163_newdatabse.Designer.cs">
       <DependentUpon>201910171814163_newdatabse.cs</DependentUpon>
+=======
+    <Compile Include="Migrations\201910171739036_InitRoundTwo.cs" />
+    <Compile Include="Migrations\201910171739036_InitRoundTwo.Designer.cs">
+      <DependentUpon>201910171739036_InitRoundTwo.cs</DependentUpon>
+>>>>>>> e8bdb62fbbee43a4f1f7f1809dfa0a4b868ea574
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -321,8 +327,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201910171814163_newdatabse.resx">
       <DependentUpon>201910171814163_newdatabse.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Migrations\201910171739036_InitRoundTwo.resx">
+      <DependentUpon>201910171739036_InitRoundTwo.cs</DependentUpon>
+>>>>>>> e8bdb62fbbee43a4f1f7f1809dfa0a4b868ea574
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

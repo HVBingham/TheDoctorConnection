@@ -50,8 +50,7 @@ namespace PrescriptionCapstone.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "UserName")]
-   
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required]
@@ -61,13 +60,16 @@ namespace PrescriptionCapstone.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+
+     
     }
 
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name ="UserRoles")]
-        public string UserRoles { get; set; }
+        [Display(Name ="User Role")]
+        public string UserRole { get; set; }
 
         [Required]
         [EmailAddress]
@@ -75,7 +77,7 @@ namespace PrescriptionCapstone.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name="UserName")]
+        [Display(Name="User Name")]
         public string UserName { get; set; }
 
         [Required]
