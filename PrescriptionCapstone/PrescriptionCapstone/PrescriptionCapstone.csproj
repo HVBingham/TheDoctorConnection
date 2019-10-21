@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201910181720554_RemovedEmail.Designer.cs">
       <DependentUpon>201910181720554_RemovedEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910181919400_updatethedata.cs" />
+    <Compile Include="Migrations\201910181919400_updatethedata.Designer.cs">
+      <DependentUpon>201910181919400_updatethedata.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Doctor.cs" />
@@ -298,6 +302,7 @@
     <Content Include="Views\Patients\Edit.cshtml" />
     <Content Include="Views\Patients\Index.cshtml" />
     <Content Include="Views\Doctors\PatientsByDiagnosis.cshtml" />
+    <Content Include="Views\Patients\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910181720554_RemovedEmail.resx">
       <DependentUpon>201910181720554_RemovedEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181919400_updatethedata.resx">
+      <DependentUpon>201910181919400_updatethedata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

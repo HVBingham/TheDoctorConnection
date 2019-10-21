@@ -167,6 +167,10 @@ namespace PrescriptionCapstone.Controllers
             context.SaveChanges();
             return View(patientFromDb.Log);
         }
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
 
     }
 }

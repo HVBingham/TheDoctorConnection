@@ -20,7 +20,7 @@ namespace PrescriptionCapstone.Models
         public bool MedicationConfirmed { get; set; }
 
         [Display(Name = "When to Take Medication")]
-        public DateTime ScheduledTimeToTake { get; set; }
+        public string ScheduledTimeToTake { get; set; }
 
         [ForeignKey("Patient")]
         public int  PatientId { get; set; }

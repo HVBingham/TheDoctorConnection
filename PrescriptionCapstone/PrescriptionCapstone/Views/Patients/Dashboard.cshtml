@@ -1,0 +1,127 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+<div style="border:2.5px solid black; height: auto; width:auto;">
+    <div class="row">
+        <div class="col-lg-12">
+            <center>
+                <div class="Med-Sched">
+                    <h3><u>Medication Schedule </u></h3>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-lg-10">
+            <center>
+                <div class="Med-Sched-List">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <center>
+        <div class="col-md-6">
+            <div class="Current-Med">
+                <center>
+                    <h4><u> Current  Medications:</u></h4>
+                </center>
+            </div>
+        </div>
+    </center>
+    <div class="col-md-6">
+        <div class="Sched-Appt">
+            <center>
+                <h4><u>Scheduled Appointments</u></h4>
+            </center>
+        </div>
+    </div>
+</div>
+<div class:"row">
+    <div class="col-md-6">
+        <div class="Med">
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="Appts">
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="Med-Tab">
+            <center>
+                <h5><u>Medication Options:</u></h5>
+            </center>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="">
+            <center>
+                <h5></h5>
+            </center>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="Diagnos">
+            <center>
+                <h5><u>Current Diagnosis:</u></h5>
+            </center>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="Med-Dets">
+            <br />
+            <br />
+            <br />
+
+        </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+        <div class="Cur-Diag">
+            @*@Html.DisplayFor(model => model.Diagnosis)*@
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="log">
+            <center>
+                <h3><u>Your log</u></h3>
+            </center>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        function add_chatinline() { var hccid = 81777266; var nt = document.createElement("script"); nt.async = true; nt.src = "https://mylivechat.com/chatinline.aspx?hccid=" + hccid; var ct = document.getElementsByTagName("script")[0]; ct.parentNode.insertBefore(nt, ct); }
+        add_chatinline();</script>
+}
